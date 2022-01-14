@@ -14,11 +14,14 @@ const sass = require("gulp-sass")(require("sass"));
 
 // PLUGINS
 
+
+
 // HTML
 
 const watcher = () => {
     watch("./src/html/**/*.html", html);
     watch("./src/style/**/*.scss", style);
+    watch("./src/src/**/*.*", source);
 
 }
 
@@ -52,7 +55,7 @@ const style = () => {
         .pipe(sass())
         .pipe(autoPrefixer())
         .pipe(shorthand())
-        .pipe(dest("./{src, dist}/css"));
+        .pipe(dest("./dist/css"));
 
 
 }
@@ -67,14 +70,27 @@ const server = () => {
     })
 }
 
+// SOURCE
+
+const source = () => {
+    console.log("SOURCE");
+    return src("./src/src/**/*.*")
+
+
+        .pipe(dest("./dist/src"))
+
+
+}
+
 // Build
 exports.html = html;
 exports.style = style;
 exports.watch = watcher;
 exports.removedir = removedir;
+exports.source = source;
 exports.dev = series(
     removedir,
-    parallel(html, style),
+    parallel(html, style, source),
     parallel(watcher, server)
 );
 
