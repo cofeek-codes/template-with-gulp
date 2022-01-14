@@ -4,8 +4,9 @@ const { src, dest, watch, series, parallel } = require("gulp");
 const fileinclude = require("gulp-file-include");
 const del = require("del");
 const autoprefixer = require('gulp-autoprefixer');
-const shorthand = require("gulp-shorthand");
 const sass = require("gulp-sass")(require("sass"));
+const groupCssMediaQueries = require("gulp-group-css-media-queries");
+const shorthand = require("gulp-shorthand");
 
 
 
@@ -54,6 +55,7 @@ const style = () => {
 
         .pipe(sass())
         .pipe(autoprefixer())
+        .pipe(groupCssMediaQueries())
         .pipe(shorthand())
         .pipe(dest("./dist/css"));
 

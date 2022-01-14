@@ -1,3 +1,17 @@
 body {
-    display: flex;
+    margin-right: 30px;
+    margin-right: 10px;
+    font-family: serif;
+    font-size: 15px;
+}
+@media (max-with: 900px) {
+    body {
+        background: #000;
+    }
+}
+
+@media (max-with: 900px) {
+    html {
+        background: #fff;
+    }
 }
