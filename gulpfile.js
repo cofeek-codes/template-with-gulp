@@ -15,7 +15,7 @@ const fileinclude = require("gulp-file-include");
 
 const html = () => {
     console.log("HTML");
-   return src("./{*, html}/*.html")
+   return src("./src/html/*.html")
 
 
 
