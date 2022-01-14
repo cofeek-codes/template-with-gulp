@@ -3,7 +3,7 @@ const browserSync = require("browser-sync").create();
 const { src, dest, watch, series, parallel } = require("gulp");
 const fileinclude = require("gulp-file-include");
 const del = require("del");
-const autoPrefixer = require("gulp-autoprefixer");
+const autoprefixer = require('gulp-autoprefixer');
 const shorthand = require("gulp-shorthand");
 const sass = require("gulp-sass")(require("sass"));
 
@@ -53,7 +53,7 @@ const style = () => {
 
 
         .pipe(sass())
-        .pipe(autoPrefixer())
+        .pipe(autoprefixer())
         .pipe(shorthand())
         .pipe(dest("./dist/css"));
 
