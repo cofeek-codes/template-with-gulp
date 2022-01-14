@@ -13,6 +13,10 @@
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-file-include": "^2.3.0"
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-shorthand": "^1.1.0",
+    "sass": "^1.48.0"
   }
 }
