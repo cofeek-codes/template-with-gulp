@@ -26,13 +26,12 @@ const ttf2woff2 = require("gulp-ttf2woff2");
 // HTML
 
 const watcher = () => {
-    watch("./src/**/*.*", removedir);
-    watch("./src/html/**/*.html", html);
-    watch("./src/style/**/*.scss", style);
-    watch("./src/js/**/*.js", javascript);
-    watch("./src/src/img/*.{jpg,png,jpeg}", images);
-    watch("./src/src/img/svg/*.svg", svg);
-    watch("./src/src/fonts/*.*", fonts);
+    watch("./src/html/**/*.html", html).on("all", browserSync.reload);
+    watch("./src/style/**/*.scss", style).on("all", browserSync.reload);
+    watch("./src/js/**/*.js", javascript).on("all", browserSync.reload);
+    watch("./src/src/img/*.{jpg,png,jpeg}", images).on("all", browserSync.reload);
+    watch("./src/src/img/svg/*.svg", svg).on("all", browserSync.reload);
+    watch("./src/src/fonts/*.*", fonts).on("all", browserSync.reload);
 
 }
 
@@ -150,8 +149,8 @@ exports.fonts = fonts;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.dev = series(
-    removedir,
     parallel(html, style, javascript, images, svg, fonts),
-    parallel(watcher, server)
+    parallel(watcher, server),
+    removedir
 );
 
