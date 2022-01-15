@@ -10,6 +10,8 @@ const shorthand = require("gulp-shorthand");
 const babel = require("gulp-babel");
 const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
+const fonter = require("gulp-fonter");
+const ttf2woff2 = require("gulp-ttf2woff2");
 
 
 
@@ -30,6 +32,7 @@ const watcher = () => {
     watch("./src/js/**/*.js", javascript);
     watch("./src/src/img/*.{jpg,png,jpeg}", images);
     watch("./src/src/img/svg/*.svg", svg);
+    watch("./src/src/fonts/*.*", fonts);
 
 }
 
@@ -110,6 +113,7 @@ const images = () => {
         .pipe(dest("./dist/src/img"))
 }
 
+
 // SVG
 
 const svg = () => {
@@ -122,17 +126,32 @@ const svg = () => {
         .pipe(dest("./dist/src/img/svg"))
 }
 
+// FONTS
+
+const fonts = () => {
+    console.log("FONTS");
+    return src("./src/src/fonts/*.*")
+        .pipe(newer("./dist/src/fonts"))
+        .pipe(fonter({
+            formats: ["ttf", "woff", "eot", "svg"]
+        }))
+        .pipe(dest("./dist/src/fonts"))
+        .pipe(ttf2woff2())
+        .pipe(dest("./dist/src/fonts"))
+}
+
 // Build
 exports.html = html;
 exports.style = style;
 exports.javascript = javascript;
 exports.images = images;
 exports.svg = svg;
+exports.fonts = fonts;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.dev = series(
     removedir,
-    parallel(html, style, javascript, images, svg),
+    parallel(html, style, javascript, images, svg, fonts),
     parallel(watcher, server)
 );
 
