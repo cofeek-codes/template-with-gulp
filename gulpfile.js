@@ -61,6 +61,19 @@ const style = () => {
 
 
 }
+// JAVASCRIPT
+
+const javascript = () => {
+    console.log("STYLE");
+    return src("./src/js/*.js")
+
+
+
+
+        .pipe(dest("./dist/js"));
+
+
+}
 
 // SERVER
 
@@ -87,12 +100,13 @@ const source = () => {
 // Build
 exports.html = html;
 exports.style = style;
+exports.javascript = javascript;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.source = source;
 exports.dev = series(
     removedir,
-    parallel(html, style, source),
+    parallel(html, style, javascript, source),
     parallel(watcher, server)
 );
 

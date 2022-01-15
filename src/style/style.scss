@@ -1,17 +1,38 @@
+@import "_header";
+@import "_burger";
+// main
+@import "_main";
+// main
+@import "_footer";
+@import "_icons";
+@import "_fonts";
+@import "_normalize";
+
+$dc: black;
+
 body {
-    margin-right: 30px;
-    margin-right: 10px;
-    font-family: serif;
-    font-size: 15px;
-}
-@media (max-with: 900px) {
-    body {
-        background: #000;
-    }
+    font-family: $ff;
+    line-height: 1;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: $dc;
 }
 
-@media (max-with: 900px) {
-    html {
-        background: #fff;
-    }
+img {
+    width: 100%;
+    height: auto;
+}
+
+$fixedheaderheight: "";
+
+.wrapper {
+    max-width: 1720px;
+    margin: 0 auto;
+    padding: 0 15px;
+    padding-top: $fixedheaderheight + 0px;
+    min-height: 100%;
+}
+.header {
+    min-height: $fixedheaderheight;
 }

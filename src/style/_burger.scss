@@ -1,0 +1,100 @@
+.header__burger {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+@media (max-width: 767px) {
+    .header__burger {
+        display: block;
+        visibility: visible;
+        pointer-events: all;
+        width: 40px;
+        height: 28px;
+        position: relative;
+    }
+    .burger__line {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: white;
+        left: 0; //height to center
+    }
+    .burger__line_top {
+        top: 0;
+    }
+    .burger__line_center {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .burger__line_bottom {
+        bottom: 0;
+    }
+
+    // BURGER__MENU
+    .nav {
+        justify-content: space-between;
+
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #121212;
+        color: #fff;
+        z-index: 15;
+        padding: 75px;
+        transform: translateX(100%);
+        transition: 0.3s linear all;
+
+        // .nav__list
+
+        &__list {
+            flex-direction: column;
+        }
+
+        // .nav__list-item
+
+        &__list-item {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 30px;
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        // .nav__list-item-link
+
+        &__list-item-link {
+            font-size: 34px;
+            font-weight: bold;
+        }
+    }
+    .nav-active {
+        transform: translate(0);
+    }
+    .header__nav-close {
+        display: block;
+        width: 40px;
+        height: 28px;
+        position: relative;
+    }
+    .header__nav-close__line-1,
+    .header__nav-close__line-2 {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: white;
+        left: 0; //height to center
+    }
+    .header__nav-close__line-1 {
+        transform: rotate(45deg);
+    }
+    .header__nav-close__line-2 {
+        transform: rotate(135deg);
+    }
+
+    // BURGER__MENU
+}
