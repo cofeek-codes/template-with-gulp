@@ -14,6 +14,7 @@ const newer = require("gulp-newer");
 
 
 
+
 // PLUGINS
 
 // PLUGINS
@@ -23,6 +24,7 @@ const newer = require("gulp-newer");
 // HTML
 
 const watcher = () => {
+    watch("./src/**/*.*", removedir);
     watch("./src/html/**/*.html", html);
     watch("./src/style/**/*.scss", style);
     watch("./src/js/**/*.js", javascript);
@@ -101,6 +103,7 @@ const images = () => {
     return src("./src/src/img/*.{jpg,png,jpeg}")
 
         .pipe(newer("./dist/src/img"))
+        .pipe(dest("./dist/src/img"))
         .pipe(imagemin({
             verbose: true
         }))
