@@ -32,6 +32,7 @@ const watcher = () => {
     watch("./src/src/img/*.{jpg,png,jpeg}", images).on("all", browserSync.reload);
     watch("./src/src/img/svg/*.svg", svg).on("all", browserSync.reload);
     watch("./src/src/fonts/*.*", fonts).on("all", browserSync.reload);
+    watch("./src/src/img/icons/*.*", icons).on("all", browserSync.reload);
 
 }
 
@@ -139,6 +140,18 @@ const fonts = () => {
         .pipe(dest("./dist/src/fonts"))
 }
 
+const icons = () => {
+    console.log("ICONS");
+    return src("./src/src/img/icons/**/*.*")
+        .pipe(newer("./dist/src/img/icons/*.*"))
+        .pipe(fonter({
+            formats: ["ttf", "woff", "eot", "svg"]
+        }))
+        .pipe(dest("./dist/src/img/icons"))
+        .pipe(ttf2woff2())
+        .pipe(dest("./dist/src/img/icons"))
+}
+
 // Build
 exports.html = html;
 exports.style = style;
@@ -146,10 +159,11 @@ exports.javascript = javascript;
 exports.images = images;
 exports.svg = svg;
 exports.fonts = fonts;
+exports.icons = icons;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.dev = series(
-    parallel(html, style, javascript, images, svg, fonts),
+    parallel(html, style, javascript, images, svg, fonts, icons),
     parallel(watcher, server),
     removedir
 );
