@@ -7,6 +7,9 @@ const autoprefixer = require('gulp-autoprefixer');
 const sass = require("gulp-sass")(require("sass"));
 const groupCssMediaQueries = require("gulp-group-css-media-queries");
 const shorthand = require("gulp-shorthand");
+const babel = require("gulp-babel");
+const imagemin = require("gulp-imagemin");
+const newer = require("gulp-newer");
 
 
 
@@ -22,7 +25,9 @@ const shorthand = require("gulp-shorthand");
 const watcher = () => {
     watch("./src/html/**/*.html", html);
     watch("./src/style/**/*.scss", style);
-    watch("./src/src/**/*.*", source);
+    watch("./src/js/**/*.js", javascript);
+    watch("./src/src/img/*.{jpg,png,jpeg}", images);
+    watch("./src/src/img/svg/*.svg", svg);
 
 }
 
@@ -85,28 +90,46 @@ const server = () => {
     })
 }
 
-// SOURCE
-
-const source = () => {
-    console.log("SOURCE");
-    return src("./src/src/**/*.*")
 
 
-        .pipe(dest("./dist/src"))
 
 
+// IMAGES
+
+const images = () => {
+    console.log("IMAGES");
+    return src("./src/src/img/*.{jpg,png,jpeg}")
+
+        .pipe(newer("./dist/src/img"))
+        .pipe(imagemin({
+            verbose: true
+        }))
+        .pipe(dest("./dist/src/img"))
+}
+
+// SVG
+
+const svg = () => {
+    console.log("SVG");
+    return src("./src/src/img/svg/*.svg")
+        .pipe(newer("./dist/src/img/svg"))
+        .pipe(imagemin({
+            verbose: true
+        }))
+        .pipe(dest("./dist/src/img/svg"))
 }
 
 // Build
 exports.html = html;
 exports.style = style;
 exports.javascript = javascript;
+exports.images = images;
+exports.svg = svg;
 exports.watch = watcher;
 exports.removedir = removedir;
-exports.source = source;
 exports.dev = series(
     removedir,
-    parallel(html, style, javascript, source),
+    parallel(html, style, javascript, images, svg),
     parallel(watcher, server)
 );
 
