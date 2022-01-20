@@ -33,7 +33,6 @@ const watcher = () => {
     watch("./src/src/img/svg/*.svg", svg).on("all", browserSync.reload);
     watch("./src/src/fonts/*.*", fonts).on("all", browserSync.reload);
     watch("./src/src/img/icons/*.*", icons).on("all", browserSync.reload);
-    watch("./src/src/img/favicon/**/*.*", favicon).on("all", browserSync.reload);
 
 }
 
@@ -126,14 +125,6 @@ const svg = () => {
         }))
         .pipe(dest("./dist/src/img/svg"))
 }
-// FAVICON
-
-const favicon = () => {
-    console.log("FAVICON");
-    return src("./src/src/img/favicon/**/*.*")
-
-        .pipe(dest("./dist/src/img/favicon"))
-}
 
 // FONTS
 
@@ -169,11 +160,10 @@ exports.images = images;
 exports.svg = svg;
 exports.fonts = fonts;
 exports.icons = icons;
-exports.favicon = favicon;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.dev = series(
-    parallel(html, style, javascript, images, svg, fonts, icons, favicon),
+    parallel(html, style, javascript, images, svg, fonts, icons),
     parallel(watcher, server),
     removedir
 );
