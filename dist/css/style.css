@@ -131,7 +131,7 @@ img {
 }
 
 .wrapper {
-  max-width: 1720px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 15px;
   padding-top: "0px";
@@ -140,10 +140,6 @@ img {
 
 .header {
   min-height: "";
-}
-
-body {
-  background: #000;
 }
 
 @media (max-width: 767px) {
