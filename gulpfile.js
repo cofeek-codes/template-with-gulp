@@ -29,11 +29,11 @@ const watcher = () => {
     watch("./src/html/**/*.html", html).on("all", browserSync.reload);
     watch("./src/style/**/*.scss", style).on("all", browserSync.reload);
     watch("./src/js/**/*.js", javascript).on("all", browserSync.reload);
-    watch("./src/src/img/*.{jpg,png,jpeg}", images).on("all", browserSync.reload);
-    watch("./src/src/img/svg/*.svg", svg).on("all", browserSync.reload);
-    watch("./src/src/fonts/*.*", fonts).on("all", browserSync.reload);
-    watch("./src/src/img/icons/*.*", icons).on("all", browserSync.reload);
-    watch("./src/src/img/favicon/*.*", favicon).on("all", browserSync.reload);
+    watch("./src/img/*.{jpg,png,jpeg}", images).on("all", browserSync.reload);
+    watch("./src/img/svg/*.svg", svg).on("all", browserSync.reload);
+    watch("./src/fonts/*.*", fonts).on("all", browserSync.reload);
+    watch("./src/img/icons/*.*", icons).on("all", browserSync.reload);
+    watch("./src/img/favicon/*.*", favicon).on("all", browserSync.reload);
 
 }
 
@@ -100,7 +100,7 @@ const server = () => {
 
 const favicon = () => {
     console.log("favicon");
-    return src("./src/src/img/favicon/**/*.*")
+    return src("./src/img/favicon/**/*.*")
 
 
 
@@ -117,7 +117,7 @@ const favicon = () => {
 
 const images = () => {
     console.log("IMAGES");
-    return src("./src/src/img/*.{jpg,png,jpeg}")
+    return src("./src/img/*.{jpg,png,jpeg}")
 
         .pipe(newer("./dist/src/img"))
         .pipe(dest("./dist/src/img"))
@@ -132,7 +132,7 @@ const images = () => {
 
 const svg = () => {
     console.log("SVG");
-    return src("./src/src/img/svg/*.svg")
+    return src("./src/img/svg/*.svg")
         .pipe(newer("./dist/src/img/svg"))
         .pipe(imagemin({
             verbose: true
@@ -144,7 +144,7 @@ const svg = () => {
 
 const fonts = () => {
     console.log("FONTS");
-    return src("./src/src/fonts/*.*")
+    return src("./src/fonts/*.*")
         .pipe(newer("./dist/src/fonts"))
         .pipe(fonter({
             formats: ["ttf", "woff", "eot", "svg"]
@@ -156,7 +156,7 @@ const fonts = () => {
 
 const icons = () => {
     console.log("ICONS");
-    return src("./src/src/img/icons/**/*.*")
+    return src("./src/img/icons/**/*.*")
         .pipe(newer("./dist/src/img/icons/*.*"))
         .pipe(fonter({
             formats: ["ttf", "woff", "eot", "svg"]
