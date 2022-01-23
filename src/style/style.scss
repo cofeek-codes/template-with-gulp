@@ -45,7 +45,3 @@ $fixedheaderheight: "";
     $added: #{$default - $min};
     font-size: calc(#{$min + px} + #{$added} * (100vw / #{$wrapper}));
 }
-
-p {
-    @include fza(24, 40);
-}
