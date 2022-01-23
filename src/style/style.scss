@@ -5,6 +5,7 @@
 // main
 @import "_footer";
 @import "_converter";
+@import "_adaptive";
 @import "_icons";
 @import "_fonts";
 @import "_normalize";
@@ -16,7 +17,7 @@ body {
     line-height: 1;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     color: $dc;
 }
 
@@ -25,10 +26,12 @@ img {
     height: auto;
 }
 
+$wrapper: 1920px;
+
 $fixedheaderheight: "";
 
 .wrapper {
-    max-width: 1920px;
+    max-width: $wrapper;
     margin: 0 auto;
     padding: 0 15px;
     padding-top: $fixedheaderheight + 0px;
@@ -36,4 +39,7 @@ $fixedheaderheight: "";
 }
 .header {
     min-height: $fixedheaderheight;
+}
+
+@media (max-width: $wrapper) {
 }
