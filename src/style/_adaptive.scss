@@ -1,7 +1,7 @@
-@mixin adaptive($name, $start, $end) {
-    $calculated: $start - $end;
-    #{$name}: $start;
-    @media (max-width: $wrapper) {
-        #{$name}: calc(#{$start} + #{$calculated} * ((100vw - 320px) / #{$wrapper - 320}));
-    }
-}
+// @mixin adaptive($name, $start, $end) {
+//     $calculated: $start - $end + px;
+//     #{$name}: $start;
+//     @media (max-width: $wrapper) {
+//         #{$name}: calc(#{$start} + #{$calculated} * ((100vw - 320px) / #{$wrapper - 320}));
+//     }
+// }

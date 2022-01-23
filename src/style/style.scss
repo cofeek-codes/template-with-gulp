@@ -26,12 +26,12 @@ img {
     height: auto;
 }
 
-$wrapper: 1920px;
+$wrapper: 1280;
 
 $fixedheaderheight: "";
 
 .wrapper {
-    max-width: $wrapper;
+    max-width: $wrapper + px;
     margin: 0 auto;
     padding: 0 15px;
     padding-top: $fixedheaderheight + 0px;
@@ -41,5 +41,11 @@ $fixedheaderheight: "";
     min-height: $fixedheaderheight;
 }
 
-@media (max-width: $wrapper) {
+@mixin fza($min, $default) {
+    $added: #{$default - $min};
+    font-size: calc(#{$min + px} + #{$added} * (100vw / #{$wrapper}));
+}
+
+p {
+    @include fza(24, 40);
 }

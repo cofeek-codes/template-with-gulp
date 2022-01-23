@@ -121,7 +121,7 @@ h6 {
 }
 
 body {
-  font: normal normal 14px/1 "";
+  font: normal normal 16px/1 "";
   color: black;
 }
 
@@ -131,7 +131,7 @@ img {
 }
 
 .wrapper {
-  max-width: 1920px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 15px;
   padding-top: "0px";
@@ -140,6 +140,10 @@ img {
 
 .header {
   min-height: "";
+}
+
+p {
+  font-size: calc(24px + 16 * (100vw / 1280));
 }
 
 @media (max-width: 767px) {
