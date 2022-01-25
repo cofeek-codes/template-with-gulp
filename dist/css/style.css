@@ -142,10 +142,6 @@ img {
   min-height: "";
 }
 
-p {
-  font-size: calc(24px + 16 * (100vw / 1280));
-}
-
 @media (max-width: 767px) {
   .header__burger {
     display: block;

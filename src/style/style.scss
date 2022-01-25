@@ -4,13 +4,12 @@
 @import "_main";
 // main
 @import "_footer";
+@import "_avs";
 @import "_converter";
 @import "_adaptive";
 @import "_icons";
 @import "_fonts";
 @import "_normalize";
-
-$dc: black;
 
 body {
     font-family: $ff;
@@ -26,10 +25,6 @@ img {
     height: auto;
 }
 
-$wrapper: 1280;
-
-$fixedheaderheight: "";
-
 .wrapper {
     max-width: $wrapper + px;
     margin: 0 auto;
@@ -39,9 +34,4 @@ $fixedheaderheight: "";
 }
 .header {
     min-height: $fixedheaderheight;
-}
-
-@mixin fza($min, $default) {
-    $added: #{$default - $min};
-    font-size: calc(#{$min + px} + #{$added} * (100vw / #{$wrapper}));
 }
