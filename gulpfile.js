@@ -12,6 +12,7 @@ const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
+const zip = require("gulp-zip")
 
 
 
@@ -34,6 +35,7 @@ const watcher = () => {
     watch("./src/fonts/*.*", fonts).on("all", browserSync.reload);
     watch("./src/img/icons/*.*", icons).on("all", browserSync.reload);
     watch("./src/img/favicon/*.*", favicon).on("all", browserSync.reload);
+    watch("./dist/**/*.*", zipar).on("all", browserSync.reload);
 
 }
 
@@ -166,6 +168,13 @@ const icons = () => {
         .pipe(dest("./dist/src/img/icons"))
 }
 
+const zipar = () => {
+    console.log("ZIP");
+    return src("./dist/**/*.*")
+        .pipe(zip('dist.zip'))
+        .pipe(dest("./dist"))
+}
+
 // Build
 exports.html = html;
 exports.style = style;
@@ -175,11 +184,14 @@ exports.svg = svg;
 exports.fonts = fonts;
 exports.icons = icons;
 exports.favicon = favicon;
+exports.zipar = zipar;
 exports.watch = watcher;
 exports.removedir = removedir;
 exports.dev = series(
+    removedir,
     parallel(html, style, javascript, images, svg, fonts, icons, favicon),
     parallel(watcher, server),
-    removedir
+    zipar
+
 );
 
