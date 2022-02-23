@@ -5,7 +5,7 @@
 //         #{$name}: calc(#{$start} + #{$calculated} * ((100vw - 320px) / #{$wrapper - 320}));
 //     }
 // }
-@import "_avs";
+//@import "_avs";
 
 @mixin fza($min, $default) {
     $added: #{$default - $min};
