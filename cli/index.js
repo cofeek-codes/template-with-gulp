@@ -16,7 +16,7 @@ function renderHtml(name) {
 		type = 'div'
 	}
 	var content = `
-    <${type} class="${name}">
+    <${type} class="${name}" id="${name}">
         <div class="${name}__wrapper">
 
         </div>
