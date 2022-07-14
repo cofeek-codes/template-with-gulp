@@ -1,6 +1,5 @@
-import { program } from 'commander'
-import * as fs from 'fs'
-
+const program = require('commander')
+const fs = require('fs')
 
 program.name('generate').argument('type').argument('name').parse()
 function renderHtml(name) {
@@ -16,7 +15,7 @@ function renderHtml(name) {
 		type = 'div'
 	}
 	var content = `
-    <${type} class="${name}">
+    <${type} class="${name}" id="${name}">
         <div class="${name}__wrapper">
 
         </div>
@@ -81,7 +80,7 @@ function includeHtml(name) {
 	} else {
 		fs.appendFile(
 			'src/html/components/main.html',
-			`@@include(blocks/${name}.html)\n`,
+			`@@include("blocks/${name}.html")\n`,
 			e => e
 		)
 	}
@@ -90,10 +89,11 @@ function generate() {
 	var type = program.args[0]
 	var name = program.args[1]
 	if (
-		fs.existsSync(`src/html/${name}.html`) ||
-		fs.existsSync(`src/html/components/${name}.html`) ||
-		fs.existsSync(`src/html/components/blocks/${name}.html`) ||
-		fs.existsSync(`src/style/_${name}.scss`)
+		(type === 'html' &&
+			(fs.existsSync(`src/html/${name}.html`) ||
+				fs.existsSync(`src/html/components/${name}.html`) ||
+				fs.existsSync(`src/html/components/blocks/${name}.html`))) ||
+		(type === 'style' && fs.existsSync(`src/style/_${name}.scss`))
 	) {
 		console.log('you already have this component')
 		process.exit(1)
