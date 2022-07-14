@@ -1,0 +1,53 @@
+@import "_avs";
+.header {
+    background: rgb(37, 226, 8);
+    &__wrapper {
+        width: 100%;
+        height: $fixedheaderheight;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        nav {
+            ul {
+                display: flex;
+
+                li {
+                    &:not(:last-child) {
+                        margin-right: 20px;
+                    }
+                    a {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 21px;
+                        position: relative;
+
+                        &::after {
+                            transition: all 0.4s ease;
+                            position: absolute;
+                            top: 30px;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 5;
+                            transform: translateX(-100%);
+                            visibility: hidden;
+                            opacity: 0;
+                            content: "";
+                            width: 100%;
+                            height: 5px;
+                            background: #fff;
+                            border-radius: 30px;
+                        }
+                        &:hover {
+                            &::after {
+                                visibility: visible;
+                                transform: translateX(0);
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
