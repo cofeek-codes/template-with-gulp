@@ -5,9 +5,7 @@
 // main
 @import "_footer";
 @import "_avs";
-@import "_converter";
-@import "_adaptive";
-@import "_icons";
+@import "_media";
 @import "_fonts";
 @import "_normalize";
 
@@ -26,7 +24,8 @@ img {
 }
 
 .wrapper {
-    max-width: $wrapper + px;
+    // max-width: $wrapper + px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 15px;
     padding-top: $fixedheaderheight + 0px;
